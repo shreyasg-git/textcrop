@@ -6,6 +6,10 @@ ret, thresh = cv2.threshold(imgray, 127, 255, 4)
 contours, _ = cv2.findContours(thresh, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 cv2.imshow("thresh", thresh)
 
+xs = []
+ys = []
+xws = []
+yhs = []
 
 for c in contours:
     rect = cv2.boundingRect(c)
@@ -13,21 +17,27 @@ for c in contours:
     print(cv2.contourArea(c))
     x, y, w, h = rect
     cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 1)
-    starts.append((x, y))
-    mean_starts.append((x ** 2) + (y ** 2) ** 0.5)
-    ends.append((x+w, y+h))
-    mean_ends.append(((x + w) ** 2) + ((y + h) ** 2) ** 0.5)
+
+    xs.append(x)
+    ys.append(y)
+    xws.append(x+w)
+    yhs.append(y+h)
+
     # cv2.putText(img, 'Moth Detected', (x+w+10,y+h), 0, 0.3, (0, 255, 0))
 # print(min(starts))
 # print(starts)
 # print(max(ends))
 # print(ends)
 
-strt = starts[mean_starts.index(min(mean_starts))]
-end = ends[mean_ends.index(max(mean_ends))]
+left_up = (min(xs), min(ys))
+right_down = (max(xws), max(yhs))
+
+# left_up = (min(ys), min(xs))
+# right_down = (max(yhs), max(xws))
 
 
-cv2.rectangle(img, strt, end, (0, 255, 255), 1)
+
+cv2.rectangle(img, left_up, right_down, (0, 255, 255), 1)
 cv2.imshow("Show", img)
 cv2.imshow("Gray", imgray)
 cv2.waitKey()
