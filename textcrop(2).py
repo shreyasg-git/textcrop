@@ -1,6 +1,6 @@
 import cv2
 from PIL import ImageGrab
-
+import os
 img_in = ImageGrab.grabclipboard()
 img_in.save('tempsave.png', 'PNG')
 img = cv2.imread('tempsave.png')
@@ -45,6 +45,7 @@ final_image = img[(min(ys) - margin):(max(yhs) + margin), (min(xs) - margin):(ma
 
 final_name = input("Enter the output image name")
 cv2.imwrite('{}.png'.format(final_name), final_image)
+os.remove('tempsave.png')
 
 # cv2.rectangle(img, (min(xs), min(ys)), (max(xws), max(yhs)), (0, 255, 255), 1)
 # cv2.imshow("Show", img)
