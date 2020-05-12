@@ -6,9 +6,6 @@ ret, thresh = cv2.threshold(imgray, 127, 255, 4)
 contours, _ = cv2.findContours(thresh, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 cv2.imshow("thresh", thresh)
 
-x
-y
-x_h
 
 for c in contours:
     rect = cv2.boundingRect(c)
