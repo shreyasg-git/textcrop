@@ -1,6 +1,6 @@
 import cv2
 
-img = cv2.imread('img3.png')
+img = cv2.imread('img7.png')
 
 imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -14,7 +14,7 @@ xs = []     # x-coordinate of each
 ys = []     # y-coordinate of each
 xws = []    # (x+w)-coordinate of each
 yhs = []    # (y+h)-coordinate of each
-margin = 7  # margin to be left
+margin = 2  # margin to be left
 
 for c in contours:
 
@@ -43,8 +43,8 @@ final_image = img[(min(ys) - margin):(max(yhs) + margin), (min(xs) - margin):(ma
 final_name = input("Enter the output image name")
 cv2.imwrite('{}.png'.format(final_name), final_image)
 
-# cv2.rectangle(img, (min(xs), min(ys)), (max(xws), max(yhs)), (0, 255, 255), 1)
-# cv2.imshow("Show", img)
+cv2.rectangle(img, (min(xs), min(ys)), (max(xws), max(yhs)), (0, 255, 255), 1)
+cv2.imshow("Show", img)
 # cv2.imshow("Gray", imgray)
-# cv2.waitKey()
-# cv2.destroyAllWindows()
+cv2.waitKey()
+cv2.destroyAllWindows()
