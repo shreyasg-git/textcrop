@@ -1,4 +1,4 @@
-# textcrop
+# textcrop (Windows Only)
 
 OpenCV application for PrepHard project.
 
